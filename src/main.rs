@@ -17,6 +17,9 @@ struct Args {
 
     #[arg(short, long, default_value_t = 10_000)]
     max_records: i32,
+
+    #[arg(short, long)]
+    outfile: String,
 }
 
 fn main() -> Result<()> {
@@ -41,7 +44,14 @@ fn main() -> Result<()> {
     // Sample a percentage of rows
     let n = ((percent * df.shape().0 as f32).floor()) as usize;
 
-    let sampled_df = df.sample_n_literal(n, false, false, None)?;
+    let mut sampled_df = df.sample_n_literal(n, false, false, None)?;
+
+    let mut outfile = File::create(&args.outfile).expect("Could not create output file...");
+
+    let _ = CsvWriter::new(&mut outfile)
+        .has_header(true)
+        .with_separator(b',')
+        .finish(&mut sampled_df);
 
     let t2 = Instant::now();
 
