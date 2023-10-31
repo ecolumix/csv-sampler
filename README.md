@@ -6,7 +6,7 @@ This is a small command line application that takes a CSV file as input and retu
 
 ## Usage
 
-Usage: csv-sampler [OPTIONS] --file <FILE>
+Usage: `csv-sampler [OPTIONS] --file <FILE>`
 
 ```
 Options:
