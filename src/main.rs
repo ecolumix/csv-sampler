@@ -34,9 +34,9 @@ fn main() -> Result<()> {
     let max_records = Some(args.max_records as usize);
 
     // Read the CSV file into a DataFrame
-    let file = File::open(input_path)?;
+    //    let file = File::open(input_path)?;
 
-    let df = CsvReader::new(file)
+    let df = CsvReader::from_path(input_path)?
         .infer_schema(max_records)
         .has_header(true)
         .finish()?;
