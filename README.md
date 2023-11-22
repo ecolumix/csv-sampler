@@ -1,4 +1,4 @@
-# csv-sampler
+# tranche 
 
 ## Summary
 This is a small command line application that takes a CSV file as input and returns a random sub-sample of the CSV file's rows.
@@ -7,7 +7,7 @@ This is a small command line application that takes a CSV file as input and retu
 ## Usage
 
 
-Usage: `csv-sampler [OPTIONS] --file <FILE> --outfile <OUTFILE>`
+Usage: `tranche [OPTIONS] --file <FILE> --outfile <OUTFILE>`
 
 
 
