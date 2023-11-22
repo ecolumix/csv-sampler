@@ -13,13 +13,16 @@ struct Args {
     file: String,
 
     #[arg(short, long, default_value_t = 10.0)]
-    percent: f32,
+    percent: f64,
 
     #[arg(short, long, default_value_t = 10_000)]
-    max_records: i32,
+    max_records: i32, // Number of records for polars to scan to determine a column's type
 
     #[arg(short, long)]
     outfile: String,
+
+    #[arg(short, long)]
+    seed: Option<u64>,
 }
 
 fn main() -> Result<()> {
@@ -42,9 +45,9 @@ fn main() -> Result<()> {
         .finish()?;
 
     // Sample a percentage of rows
-    let n = ((percent * df.shape().0 as f32).floor()) as usize;
+    let n = ((percent * df.shape().0 as f64).floor()) as usize;
 
-    let mut sampled_df = df.sample_n_literal(n, false, false, None)?;
+    let mut sampled_df = df.sample_n_literal(n, false, false, args.seed)?;
 
     let mut outfile = File::create(&args.outfile).expect("Could not create output file...");
 
