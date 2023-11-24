@@ -59,6 +59,6 @@ fn main() -> Result<()> {
     let t2 = Instant::now();
 
     println!("Sampling completed in: {:?}", t2 - t1);
-
+    println!("sample_df dimensions: {:?}", sampled_df.shape());
     Ok(())
 }
