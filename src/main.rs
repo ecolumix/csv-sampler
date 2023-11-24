@@ -60,8 +60,5 @@ fn main() -> Result<()> {
 
     println!("Sampling completed in: {:?}", t2 - t1);
 
-    // Print the sampled DataFrame
-    println!("{:?}", sampled_df);
-
     Ok(())
 }
